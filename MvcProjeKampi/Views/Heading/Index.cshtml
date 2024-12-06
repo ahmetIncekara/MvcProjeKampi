@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@{ string color = "";}
+@{ string colorCategory = "", colorStatus = "";}
 
 <!DOCTYPE html>
 <html>
@@ -56,28 +56,31 @@
                         {
                             if (item.Category.CategoryName == "Tiyatro")
                             {
-                                color = "badge badge-warning";
-                            } else if (item.Category.CategoryName == "Spor")
+                                colorCategory = "badge badge-warning";
+                            }
+                            else if (item.Category.CategoryName == "Spor")
                             {
-                                color = "badge badge-success";
-                            } else if (item.Category.CategoryName == "Yazılım")
+                                colorCategory = "badge badge-success";
+                            }
+                            else if (item.Category.CategoryName == "Yazılım")
                             {
-                                color = "badge badge-info";
-                            }else if (item.Category.CategoryName == "Seyahat")
+                                colorCategory = "badge badge-info";
+                            }
+                            else if (item.Category.CategoryName == "Seyahat")
                             {
-                                color = "badge badge-secondary";
+                                colorCategory = "badge badge-secondary";
                             }
                             else if (item.Category.CategoryName == "Dizi")
                             {
-                                color = "badge badge-primary";
+                                colorCategory = "badge badge-primary";
                             }
                             else if (item.Category.CategoryName == "Film")
                             {
-                                color = "badge badge-light";
+                                colorCategory = "badge badge-light";
                             }
                             else if (item.Category.CategoryName == "Kitap")
                             {
-                                color = "badge badge-danger";
+                                colorCategory = "badge badge-danger";
                             }
                             <tr>
                                 <td>
@@ -100,10 +103,12 @@
                                     </ul>
                                 </td>
                                 <td class="project-state">
-                                    @item.HeadingStatus
+                                    <span class="badge text-sm @(item.HeadingStatus ? "badge-success" : "badge-danger" )">
+                                        @( @item.HeadingStatus ? "Aktif" : "Pasif"  )
+                                    </span>
                                 </td>
                                 <td class="project-state">
-                                    <span class=" @color">@item.Category.CategoryName</span>
+                                    <span class="text-sm @colorCategory">@item.Category.CategoryName</span>
                                 </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
@@ -119,7 +124,7 @@
                                     <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingID">
                                         <i class="fas fa-trash">
                                         </i>
-                                        Sil
+                                        @(item.HeadingStatus ? "Pasif Yap" : "Aktif Yap" )
                                     </a>
                                 </td>
                             </tr>

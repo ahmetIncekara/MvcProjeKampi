@@ -25,11 +25,11 @@ namespace MvcProjeKampi.Controllers
         public ActionResult AddHeading()
         {
             List<SelectListItem> categoryValues = (from x in cm.GetList()
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = x.CategoryName,
-                                                        Value = x.CategoryID.ToString()
-                                                    }).ToList();
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                   }).ToList();
             List<SelectListItem> writerValues = (from x in wm.GetList()
                                                  select new SelectListItem
                                                  {
@@ -74,6 +74,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult DeleteHeading(int id)
         {
             var headingValue = hm.GetByID(id);
+            headingValue.HeadingStatus = !headingValue.HeadingStatus;
             hm.HeadingDelete(headingValue);
             return RedirectToAction("Index");
         }
