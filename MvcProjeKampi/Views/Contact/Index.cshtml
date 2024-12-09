@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Mesaj Sayfası</h1>
+                    <h1>İletişim Mesaj Sayfası</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -31,7 +31,7 @@
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">Gelen Mesajlar</h3>
+                            <h3 class="card-title">İletişim Mesajları</h3>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm">
@@ -87,7 +87,7 @@
                                                     <b>@item.Subject</b> - @item.Message.Substring(0, 30)...
                                                 </td>
                                                 <td class="mailbox-attachment"></td>
-                                                <td class="mailbox-date">5 mins ago</td>
+                                                <td class="mailbox-date">@item.Date.ToString("dd.MMM.yyyy")</td>
                                             </tr>
 
                                         }

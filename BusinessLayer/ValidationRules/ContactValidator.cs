@@ -16,6 +16,8 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x=>x.Subject).NotEmpty().WithMessage("Konu adını boş geçemezsiniz");
             RuleFor(x=>x.UserName).NotEmpty().WithMessage("Kullanıcı adını boş geçemezsiniz");
 
+            RuleFor(x => x.UserMail).EmailAddress().WithMessage("Geçersiz mail adresi");
+
             RuleFor(x=>x.Subject).MinimumLength(3).WithMessage("En az 3 karakter olmalı");
             RuleFor(x=>x.UserName).MinimumLength(3).WithMessage("En az 3 karakter olmalı");
 

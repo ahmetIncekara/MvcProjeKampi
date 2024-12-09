@@ -2317,6 +2317,11 @@
     <Content Include="Views\Contact\GetContactDetails.cshtml" />
     <Content Include="Views\Contact\LeftSideMenu.cshtml" />
     <Content Include="Views\Message\Inbox.cshtml" />
+    <Content Include="Views\Message\Sendbox.cshtml" />
+    <Content Include="Views\Message\LeftSideMenu.cshtml" />
+    <Content Include="Views\Message\GetReceiveMessageDetails.cshtml" />
+    <Content Include="Views\Message\GetSendMessageDetails.cshtml" />
+    <Content Include="Views\Message\NewMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

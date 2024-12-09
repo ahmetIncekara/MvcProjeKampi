@@ -21,6 +21,8 @@ namespace EntityLayer.Concretes
         [StringLength(50)]
         public string Subject { get; set; }
 
+        public DateTime Date { get; set; }
+
         [StringLength(1000)]
         public string Message { get; set; }
     }

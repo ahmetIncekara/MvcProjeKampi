@@ -1,7 +1,8 @@
 ﻿@using EntityLayer.Concretes
-@model Contact
+@model Message
+
 @{
-    ViewBag.Title = "GetContactDetails";
+    ViewBag.Title = "GetSendMessageDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -12,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>İletişim Mesaj Detayı</h1>
+                    <h1>Gönderilen Mesaj Detayı</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -23,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
-                    @Html.Action("LeftSideMenu","Contact")
+                    @Html.Action("LeftSideMenu", "Contact")
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
@@ -41,8 +42,8 @@
                             <div class="mailbox-read-info">
                                 <h5>Konu: @Model.Subject</h5>
                                 <h6>
-                                    Gönderen: @Model.UserMail
-                                    <span class="mailbox-read-time float-right">@Model.Date.ToString("dd.MMM.yyyy")</span>
+                                    Alıcı: @Model.ReceiverMail
+                                    <span class="mailbox-read-time float-right">@Model.MessageDate.ToString("dd.MMM.yyyy")</span>
                                 </h6>
                             </div>
                             <!-- /.mailbox-read-info -->
@@ -65,7 +66,7 @@
                             </div>
                             <!-- /.mailbox-controls -->
                             <div class="mailbox-read-message">
-                                <p>@Model.Message</p>
+                                <p>@Model.MessageContent</p>
                             </div>
                             <!-- /.mailbox-read-message -->
                         </div>
@@ -85,5 +86,4 @@
     <!-- /.control-sidebar -->
 </body>
 </html>
-
 

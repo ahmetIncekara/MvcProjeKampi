@@ -35,12 +35,17 @@ namespace BusinessLayer.Concrete
 
         public Contact GetByID(int id)
         {
-            return _contactDal.Get(x=>x.ContactID == id);
+            return _contactDal.Get(x => x.ContactID == id);
         }
 
         public List<Contact> GetList()
         {
             return _contactDal.List();
+        }
+
+        public int GetContactCount()
+        {
+            return _contactDal.Count(x => 0 == 0);
         }
     }
 }
