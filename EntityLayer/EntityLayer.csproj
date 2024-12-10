@@ -73,10 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="concretes\About.cs" />
+    <Compile Include="concretes\Admin.cs" />
     <Compile Include="concretes\Category.cs" />
     <Compile Include="concretes\Contact.cs" />
     <Compile Include="concretes\Content.cs" />
     <Compile Include="concretes\Heading.cs" />
+    <Compile Include="concretes\ImageFile.cs" />
     <Compile Include="concretes\Message.cs" />
     <Compile Include="concretes\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

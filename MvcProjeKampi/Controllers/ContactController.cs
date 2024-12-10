@@ -38,5 +38,6 @@ namespace MvcProjeKampi.Controllers
 
             return PartialView();
         }
+
     }
 }
