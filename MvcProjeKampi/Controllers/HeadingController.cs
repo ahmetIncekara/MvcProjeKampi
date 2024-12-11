@@ -15,6 +15,7 @@ namespace MvcProjeKampi.Controllers
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
         WriterManager wm = new WriterManager(new EFWriterDal());
 
+        [Authorize]
         public ActionResult Index()
         {
             var headingValues = hm.GetList();

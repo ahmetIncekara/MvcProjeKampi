@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class AdminController : Controller
+    public class LoginController : Controller
     {
         [HttpGet]
         public ActionResult Index()
@@ -24,7 +25,9 @@ namespace MvcProjeKampi.Controllers
             && x.AdminPassword == p.AdminPassword);
             if (adminUserInfo != null)
             {
-                RedirectToAction("Index", "AdminCategory");
+                FormsAuthentication.SetAuthCookie(adminUserInfo.AdminUserName,false);
+                Session["AdminUserName"]=adminUserInfo.AdminUserName;
+                return RedirectToAction("Index", "Heading");
             }
             return RedirectToAction("Index");
         }
