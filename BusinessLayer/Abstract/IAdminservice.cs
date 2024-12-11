@@ -9,6 +9,8 @@ namespace BusinessLayer.Abstract
 {
     public interface IAdminservice
     {
-        bool LoginCheck(Admin admin);
+        Admin LoginCheck(Admin admin);
+
+        string GetRole(string userName);
     }
 }

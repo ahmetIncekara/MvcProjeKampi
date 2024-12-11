@@ -24,10 +24,12 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult Index(Admin p)
         {
-            var getValue = adm.LoginCheck(p);
+            var adminValue = adm.LoginCheck(p);
 
-            if (getValue)
+            if (adminValue != null)
             {
+                FormsAuthentication.SetAuthCookie(p.AdminUserName, false);
+                Session["AdminUserName"] = p.AdminUserName;
                 return RedirectToAction("Index", "AdminCategory");
             }
             return RedirectToAction("Index");

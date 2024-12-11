@@ -18,11 +18,17 @@ namespace BusinessLayer.Concrete
             _adminDal = adminDal;
         }
 
-        public bool LoginCheck(Admin admin)
+        public string GetRole(string userName)
+        {
+            var adminValue = _adminDal.Get(x=>x.AdminUserName == userName);
+            return adminValue.AdminRole;
+        }
+
+        public Admin LoginCheck(Admin admin)
         {
             var adminValue = _adminDal.Get(x=>x.AdminUserName == admin.AdminUserName 
             && x.AdminPassword == admin.AdminPassword);
-            return adminValue != null;
+            return adminValue;
         }
     }
 }
