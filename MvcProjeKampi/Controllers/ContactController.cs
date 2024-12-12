@@ -24,6 +24,8 @@ namespace MvcProjeKampi.Controllers
         public ActionResult GetContactDetails(int id)
         {
             var contactValue = cm.GetByID(id);
+            contactValue.Read = true;
+            cm.ContactUpdate(contactValue);
             return View(contactValue);
         }
 

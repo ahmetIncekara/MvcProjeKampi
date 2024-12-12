@@ -35,7 +35,7 @@ namespace BusinessLayer.Concrete
 
         public int GetReceiveMessageCountByUser(string userMail)
         {
-            return _messageDal.Count(x=> x.ReceiverMail == userMail);
+            return _messageDal.Count(x=> x.ReceiverMail == userMail && x.Read == false);
         }
         public int GetSendMessageCountByUser(string userMail)
         {

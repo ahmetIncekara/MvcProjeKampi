@@ -25,5 +25,6 @@ namespace EntityLayer.Concretes
 
         [StringLength(1000)]
         public string Message { get; set; }
+        public bool Read {  get; set; }
     }
 }

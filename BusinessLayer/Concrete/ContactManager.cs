@@ -45,7 +45,7 @@ namespace BusinessLayer.Concrete
 
         public int GetContactCount()
         {
-            return _contactDal.Count(x => 0 == 0);
+            return _contactDal.Count(x => x.Read == false);
         }
     }
 }

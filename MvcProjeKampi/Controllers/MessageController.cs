@@ -41,6 +41,7 @@ namespace MvcProjeKampi.Controllers
             if (validationResult.IsValid)
             {
                 p.MessageDate = DateTime.Now;
+                p.Read = false;
                 mm.MessageAdd(p);
                 return RedirectToAction("Sendbox");
             }
@@ -57,6 +58,8 @@ namespace MvcProjeKampi.Controllers
         public ActionResult GetReceiveMessageDetails(int id)
         {
             var messageValue = mm.GetByID(id);
+            messageValue.Read = true;
+            mm.MessageUpdate(messageValue);
             return View(messageValue);
         }
 

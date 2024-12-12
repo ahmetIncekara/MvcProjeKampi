@@ -15,19 +15,29 @@
             <li class="nav-item active">
                 <a href="/Contact/Index" class="nav-link">
                     <i class="fas fa-mail-bulk"></i> İletişim
-                    <span class="badge bg-primary float-right">@ViewBag.ContactCount</span>
+                    @if (Convert.ToString(ViewBag.ContactCount) != "0")
+                    {
+                        <span class="badge bg-primary float-right">@ViewBag.ContactCount</span>
+                    }
+
                 </a>
             </li>
             <li class="nav-item active">
                 <a href="/Message/Inbox" class="nav-link">
                     <i class="fas fa-inbox"></i> Gelen Mesajlar
-                    <span class="badge bg-primary float-right">@ViewBag.ReceiveMessageCount</span>
-                </a>
+                    @if (Convert.ToString(ViewBag.ReceiveMessageCount) != "0")
+                    {
+                        <span class="badge bg-primary float-right">@ViewBag.ReceiveMessageCount</span>
+                    }
+                    </a>
             </li>
             <li class="nav-item active">
                 <a href="/Message/Sendbox" class="nav-link">
                     <i class="far fa-envelope"></i> Gönderilen Mesajlar
-                    <span class="badge bg-primary float-right">@ViewBag.SendMessageCount</span>
+                    @*@if (Convert.ToString(ViewBag.SendMessageCount) != "0")
+                    {
+                        <span class="badge bg-primary float-right">@ViewBag.SendMessageCount</span>
+                    }*@
                 </a>
             </li>
             <li class="nav-item">

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-     
+
 }
 
 <!DOCTYPE html>
@@ -83,7 +83,18 @@
                                                     </div>
                                                 </td>
                                                 <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                                <td class="mailbox-name"><a href="/Contact/GetContactDetails/@item.ContactID">@item.UserName</a></td>
+                                                <td class="mailbox-name">
+                                                    <a href="/Contact/GetContactDetails/@item.ContactID">
+                                                        @if (item.Read)
+                                                        {
+                                                            @item.UserName
+                                                        }
+                                                        else
+                                                        {
+                                                            <b>@item.UserName</b>
+                                                        }
+                                                    </a>
+                                                </td>
                                                 <td class="mailbox-subject">
                                                     <b>@item.Subject</b> - @item.Message.Substring(0, 30)...
                                                 </td>
