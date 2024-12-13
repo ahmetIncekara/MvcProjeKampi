@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,18 @@ namespace MvcProjeKampi.Controllers
 {
     public class WriterPanelController : Controller
     {
-        // GET: WriterPanel
-        public ActionResult Profile()
+        HeadingManager hm = new HeadingManager(new EFHeadingDal());
+
+
+        public ActionResult WriterProfile()
         {
             return View();
+        }
+
+        public ActionResult MyHeading(int id = 4)
+        {
+            var headingValues = hm.GetListByWriter(id);
+            return View(headingValues);
         }
     }
 }
