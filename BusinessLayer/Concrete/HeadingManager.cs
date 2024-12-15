@@ -25,12 +25,12 @@ namespace BusinessLayer.Concrete
 
         public List<Heading> GetList()
         {
-            return _headingDal.List();
+            return _headingDal.List(x => x.HeadingStatus == true);
         }
 
         public List<Heading> GetListByWriter(int id)
         {
-            return _headingDal.List(x => x.WriterID == id);
+            return _headingDal.List(x => x.WriterID == id && x.HeadingStatus == true);
         }
 
         public void HeadingAdd(Heading heading)
