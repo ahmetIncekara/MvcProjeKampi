@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
-    public class WriterPanelController : Controller
+    public class HeadingController : Controller
     {
         HeadingManager hm = new HeadingManager(new EFHeadingDal());
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
+        WriterManager wm = new WriterManager(new EFWriterDal());
 
 
         public ActionResult WriterProfile()
@@ -23,12 +24,14 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         public ActionResult MyHeading(int id = 4)
         {
             var headingValues = hm.GetListByWriter(id);
+            ViewBag.WriterID = id;
             return View(headingValues);
         }
 
         [HttpGet]
-        public ActionResult NewHeading()
+        public ActionResult NewHeading(int id)
         {
+            ViewBag.WriterID = id;
             List<SelectListItem> categoryValues = (from x in cm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -43,10 +46,9 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         public ActionResult NewHeading(Heading p)
         {
             p.HeadingDate = DateTime.Now;
-            p.WriterID = 4;
             p.HeadingStatus = true;
             hm.HeadingAdd(p);
-            return RedirectToAction("MyHeading");
+            return RedirectToAction("MyHeading", new { id = p.WriterID });
         }
 
         [HttpGet]

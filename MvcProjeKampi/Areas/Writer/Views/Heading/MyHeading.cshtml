@@ -5,7 +5,9 @@
     Layout = "~/Areas/Writer/Views/Shared/_Layout.cshtml";
 }
 
-@{ string colorCategory = "", colorStatus = "";}
+@{
+    string colorCategory = "", colorStatus = "";
+}
 
 
 <!DOCTYPE html>
@@ -108,12 +110,12 @@
                                         </i>
                                         İçerik
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="/Writer/WriterPanel/EditHeading/@item.HeadingID">
+                                    <a class="btn btn-info btn-sm" href="/Writer/Heading/EditHeading/@item.HeadingID">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Düzenle
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/Writer/WriterPanel/DeleteHeading/@item.HeadingID">
+                                    <a class="btn btn-danger btn-sm" href="/Writer/Heading/DeleteHeading/@item.HeadingID">
                                         <i class="fas fa-trash">
                                         </i>
                                         Sil
@@ -134,7 +136,7 @@
 </body>
 </html>
 
-<a href="/Writer/WriterPanel/NewHeading" class="btn btn-info">Yeni Başlık Ekle</a>
+<a href="/Writer/Heading/NewHeading/@ViewBag.WriterID" class="btn btn-info">Yeni Başlık Ekle</a>
 
 
 

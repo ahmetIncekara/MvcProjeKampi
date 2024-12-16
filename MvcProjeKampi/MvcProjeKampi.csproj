@@ -147,7 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Writer\Controllers\WriterController.cs" />
-    <Compile Include="Areas\Writer\Controllers\WriterPanelController.cs" />
+    <Compile Include="Areas\Writer\Controllers\HeadingController.cs" />
     <Compile Include="Areas\Writer\Controllers\WriterPanelMessageController.cs" />
     <Compile Include="Areas\Writer\WriterAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -2441,10 +2441,10 @@
     <Content Include="Areas\Writer\Views\Writer\EditWriter.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\Index.cshtml" />
     <Content Include="Areas\Writer\Views\WriterPanelMessage\Inbox.cshtml" />
-    <Content Include="Areas\Writer\Views\WriterPanel\EditHeading.cshtml" />
-    <Content Include="Areas\Writer\Views\WriterPanel\MyHeading.cshtml" />
-    <Content Include="Areas\Writer\Views\WriterPanel\NewHeading.cshtml" />
-    <Content Include="Areas\Writer\Views\WriterPanel\WriterProfile.cshtml" />
+    <Content Include="Areas\Writer\Views\Heading\EditHeading.cshtml" />
+    <Content Include="Areas\Writer\Views\Heading\MyHeading.cshtml" />
+    <Content Include="Areas\Writer\Views\Heading\NewHeading.cshtml" />
+    <Content Include="Areas\Writer\Views\Heading\WriterProfile.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
