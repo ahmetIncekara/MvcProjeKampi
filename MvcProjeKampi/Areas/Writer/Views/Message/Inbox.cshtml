@@ -8,7 +8,20 @@
 
 <!DOCTYPE html>
 <html>
+
+
+
 <body class="hold-transition sidebar-mini">
+
+    <style>
+        .flex-child {
+            white-space: nowrap;
+            width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -95,8 +108,14 @@
                                                         }
                                                     </a>
                                                 </td>
+
                                                 <td class="mailbox-subject">
-                                                    <b>@item.Subject</b> - @(item.MessageContent.Length > 30 ? @item.MessageContent.Substring(0, 30) + "..." : @item.MessageContent)
+                                                    <b>@item.Subject</b>
+                                                </td>
+                                                <td class="mailbox-subject">
+                                                    <div class="flex-child">
+                                                        @Html.Raw(item.MessageContent)
+                                                    </div>
                                                 </td>
                                                 <td class="mailbox-attachment"></td>
                                                 <td class="mailbox-date">@item.MessageDate.ToString("dd.MMM.yyyy")</td>
