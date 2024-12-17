@@ -1,7 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
-using EntityLayer.Concretes;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
@@ -9,10 +8,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcProjeKampi.Areas.Admin.Controllers
+namespace MvcProjeKampi.Areas.Writer.Controllers
 {
     public class MessageController : Controller
     {
+        ContactManager cm = new ContactManager(new EFContactDal());
         MessageManager mm = new MessageManager(new EFMessageDal());
         MessageValidator messageValidator = new MessageValidator();
 
@@ -35,12 +35,12 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewMessage(Message p)
+        public ActionResult NewMessage(EntityLayer.Concretes.Message p)
         {
             ValidationResult validationResult = messageValidator.Validate(p);
             if (validationResult.IsValid)
             {
-                p.SenderMail = "admin@gmail.com";
+                p.SenderMail = "gizem@gmail.com";
                 p.MessageDate = DateTime.Now;
                 p.Read = false;
                 mm.MessageAdd(p);
@@ -56,6 +56,7 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
             return View();
         }
 
+
         public ActionResult GetReceiveMessageDetails(int id)
         {
             var messageValue = mm.GetByID(id);
@@ -69,5 +70,18 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
             var messageValue = mm.GetByID(id);
             return View(messageValue);
         }
+
+        public PartialViewResult LeftSideMenu()
+        {
+            int contactCount = cm.GetContactCount();
+            ViewBag.ContactCount = contactCount;
+            int receiveMessageCount = mm.GetReceiveMessageCountByUser("gizem@gmail.com");
+            ViewBag.ReceiveMessageCount = receiveMessageCount;
+            int sendMessageCount = mm.GetSendMessageCountByUser("gizem@gmail.com");
+            ViewBag.SendMessageCount = sendMessageCount;
+
+            return PartialView();
+        }
+
     }
 }

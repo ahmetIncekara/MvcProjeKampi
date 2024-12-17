@@ -148,7 +148,7 @@
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Writer\Controllers\WriterController.cs" />
     <Compile Include="Areas\Writer\Controllers\HeadingController.cs" />
-    <Compile Include="Areas\Writer\Controllers\WriterPanelMessageController.cs" />
+    <Compile Include="Areas\Writer\Controllers\MessageController.cs" />
     <Compile Include="Areas\Writer\WriterAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2440,11 +2440,16 @@
     <Content Include="Areas\Writer\Views\Writer\AddWriter.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\EditWriter.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\Index.cshtml" />
-    <Content Include="Areas\Writer\Views\WriterPanelMessage\Inbox.cshtml" />
+    <Content Include="Areas\Writer\Views\Message\Inbox.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\EditHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\MyHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\NewHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\WriterProfile.cshtml" />
+    <Content Include="Areas\Writer\Views\Message\LeftSideMenu.cshtml" />
+    <Content Include="Areas\Writer\Views\Message\Sendbox.cshtml" />
+    <Content Include="Areas\Writer\Views\Message\GetReceiveMessageDetails.cshtml" />
+    <Content Include="Areas\Writer\Views\Message\GetSendMessageDetails.cshtml" />
+    <Content Include="Areas\Writer\Views\Message\NewMessage.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
