@@ -18,13 +18,13 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
 
         public ActionResult Inbox()
         {
-            var messageValues = mm.GetListInbox();
+            var messageValues = mm.GetListInbox("admin@gmail.com");
             return View(messageValues);
         }
 
         public ActionResult Sendbox()
         {
-            var messageValues = mm.GetListSendbox();
+            var messageValues = mm.GetListSendbox("admin@gmail.com");
             return View(messageValues);
         }
 

@@ -2462,7 +2462,7 @@
     <Content Include="Areas\Writer\Views\Heading\EditHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\MyHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\NewHeading.cshtml" />
-    <Content Include="Areas\Writer\Views\Heading\WriterProfile.cshtml" />
+    <Content Include="Areas\Writer\Views\Writer\WriterProfile.cshtml" />
     <Content Include="Areas\Writer\Views\Message\LeftSideMenu.cshtml" />
     <Content Include="Areas\Writer\Views\Message\Sendbox.cshtml" />
     <Content Include="Areas\Writer\Views\Message\GetReceiveMessageDetails.cshtml" />

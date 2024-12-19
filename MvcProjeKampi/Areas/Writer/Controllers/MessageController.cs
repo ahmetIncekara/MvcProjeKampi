@@ -18,13 +18,15 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
 
         public ActionResult Inbox()
         {
-            var messageValues = mm.GetListInbox();
+            var writerMail = (string)Session["WriterMail"];
+            var messageValues = mm.GetListInbox(writerMail);
             return View(messageValues);
         }
 
         public ActionResult Sendbox()
         {
-            var messageValues = mm.GetListSendbox();
+            var writerMail = (string)Session["WriterMail"];
+            var messageValues = mm.GetListSendbox(writerMail);
             return View(messageValues);
         }
 
@@ -75,9 +77,10 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         {
             int contactCount = cm.GetContactCount();
             ViewBag.ContactCount = contactCount;
-            int receiveMessageCount = mm.GetReceiveMessageCountByUser("gizem@gmail.com");
+            var writerMail = (string)Session["WriterMail"];
+            int receiveMessageCount = mm.GetReceiveMessageCountByUser(writerMail);
             ViewBag.ReceiveMessageCount = receiveMessageCount;
-            int sendMessageCount = mm.GetSendMessageCountByUser("gizem@gmail.com");
+            int sendMessageCount = mm.GetSendMessageCountByUser(writerMail);
             ViewBag.SendMessageCount = sendMessageCount;
 
             return PartialView();

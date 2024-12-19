@@ -23,6 +23,12 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             return View(writerValues);
         }
 
+        public ActionResult WriterProfile()
+        {
+            return View();
+        }
+
+
         [HttpGet]
         public ActionResult AddWriter()
         {

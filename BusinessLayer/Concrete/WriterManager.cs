@@ -62,5 +62,10 @@ namespace BusinessLayer.Concrete
         {
             _writerDal.Update(writer);
         }
+
+        public Writer GetByWriterMail(string writerMail)
+        {
+            return _writerDal.Get(x=>x.WriterMail == writerMail);
+        }
     }
 }

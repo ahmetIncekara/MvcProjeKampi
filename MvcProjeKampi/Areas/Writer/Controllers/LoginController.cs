@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         WriterManager wm = new WriterManager(new EFWriterDal());

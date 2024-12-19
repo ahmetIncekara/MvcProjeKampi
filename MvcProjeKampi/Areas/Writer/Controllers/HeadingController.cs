@@ -14,24 +14,19 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         HeadingManager hm = new HeadingManager(new EFHeadingDal());
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
         WriterManager wm = new WriterManager(new EFWriterDal());
+        EntityLayer.Concretes.Writer writerValue;
 
-
-        public ActionResult WriterProfile()
+        public ActionResult MyHeading()
         {
-            return View();
-        }
-
-        public ActionResult MyHeading(int id = 4)
-        {
-            var headingValues = hm.GetListByWriter(id);
-            ViewBag.WriterID = id;
+            var writerMail = (string)Session["WriterMail"];
+            writerValue = wm.GetByWriterMail(writerMail);
+            var headingValues = hm.GetListByWriter(writerValue.WriterID);
             return View(headingValues);
         }
 
         [HttpGet]
-        public ActionResult NewHeading(int id)
+        public ActionResult NewHeading()
         {
-            ViewBag.WriterID = id;
             List<SelectListItem> categoryValues = (from x in cm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -47,8 +42,9 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         {
             p.HeadingDate = DateTime.Now;
             p.HeadingStatus = true;
+            p.WriterID = writerValue.WriterID;
             hm.HeadingAdd(p);
-            return RedirectToAction("MyHeading", new { id = p.WriterID });
+            return RedirectToAction("MyHeading");
         }
 
         [HttpGet]

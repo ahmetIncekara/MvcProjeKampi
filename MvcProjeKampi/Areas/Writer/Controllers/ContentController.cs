@@ -11,11 +11,15 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
     public class ContentController : Controller
     {
         ContentManager cm = new ContentManager(new EFContentDal());
+        WriterManager wm = new WriterManager(new EFWriterDal());
 
         public ActionResult MyContent()
         {
-            var contentValues = cm.GetListByWriter();
+            var writerMail = (string)Session["WriterMail"];
+            var writerValue = wm.GetByWriterMail(writerMail);
+            var contentValues = cm.GetListByWriter(writerValue.WriterID);
             return View(contentValues);
+
         }
     }
 }
