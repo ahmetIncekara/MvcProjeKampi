@@ -12,7 +12,7 @@
     <div class="form-group">
         @Html.Label("Yazar Adı")
         @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterName)
+        @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
         <br />
         @Html.Label("Yazar Soyadı")
         @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })

@@ -10,23 +10,21 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
-    public class MessageController : Controller
+    public class MessageController : BaseController
     {
-        ContactManager cm = new ContactManager(new EFContactDal());
+        //ContactManager cm = new ContactManager(new EFContactDal());
         MessageManager mm = new MessageManager(new EFMessageDal());
         MessageValidator messageValidator = new MessageValidator();
 
         public ActionResult Inbox()
         {
-            var writerMail = (string)Session["WriterMail"];
-            var messageValues = mm.GetListInbox(writerMail);
+            var messageValues = mm.GetListInbox(CurrentWriter.WriterMail);
             return View(messageValues);
         }
 
         public ActionResult Sendbox()
         {
-            var writerMail = (string)Session["WriterMail"];
-            var messageValues = mm.GetListSendbox(writerMail);
+            var messageValues = mm.GetListSendbox(CurrentWriter.WriterMail);
             return View(messageValues);
         }
 
@@ -42,7 +40,7 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             ValidationResult validationResult = messageValidator.Validate(p);
             if (validationResult.IsValid)
             {
-                p.SenderMail = "gizem@gmail.com";
+                p.SenderMail = CurrentWriter.WriterMail;
                 p.MessageDate = DateTime.Now;
                 p.Read = false;
                 mm.MessageAdd(p);
@@ -75,12 +73,11 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
 
         public PartialViewResult LeftSideMenu()
         {
-            int contactCount = cm.GetContactCount();
-            ViewBag.ContactCount = contactCount;
-            var writerMail = (string)Session["WriterMail"];
-            int receiveMessageCount = mm.GetReceiveMessageCountByUser(writerMail);
+            //int contactCount = cm.GetContactCount();
+            //ViewBag.ContactCount = contactCount;
+            int receiveMessageCount = mm.GetReceiveMessageCountByUser(CurrentWriter.WriterMail);
             ViewBag.ReceiveMessageCount = receiveMessageCount;
-            int sendMessageCount = mm.GetSendMessageCountByUser(writerMail);
+            int sendMessageCount = mm.GetSendMessageCountByUser(CurrentWriter.WriterMail);
             ViewBag.SendMessageCount = sendMessageCount;
 
             return PartialView();

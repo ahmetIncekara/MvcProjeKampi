@@ -1,6 +1,9 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concretes;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +12,22 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
-    public class HeadingController : Controller
+    public class HeadingController : BaseController
     {
         HeadingManager hm = new HeadingManager(new EFHeadingDal());
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
-        WriterManager wm = new WriterManager(new EFWriterDal());
-        EntityLayer.Concretes.Writer writerValue;
+
 
         public ActionResult MyHeading()
         {
-            var writerMail = (string)Session["WriterMail"];
-            writerValue = wm.GetByWriterMail(writerMail);
-            var headingValues = hm.GetListByWriter(writerValue.WriterID);
+            var headingValues = hm.GetListByWriter(CurrentWriter.WriterID);
             return View(headingValues);
         }
 
         [HttpGet]
         public ActionResult NewHeading()
         {
-            List<SelectListItem> categoryValues = (from x in cm.GetList()
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.CategoryName,
-                                                       Value = x.CategoryID.ToString()
-                                                   }).ToList();
+            List<SelectListItem> categoryValues = GetCategoryList();
             ViewBag.categoryValues = categoryValues;
             return View();
         }
@@ -42,20 +37,26 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         {
             p.HeadingDate = DateTime.Now;
             p.HeadingStatus = true;
-            p.WriterID = writerValue.WriterID;
-            hm.HeadingAdd(p);
-            return RedirectToAction("MyHeading");
+            p.WriterID = CurrentWriter.WriterID;
+            var headingResult = hm.HeadingAdd(p);
+            if (headingResult.IsSuccess)
+            {
+                return RedirectToAction("MyHeading");
+            }
+
+            foreach (var error in headingResult.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            ViewBag.categoryValues = GetCategoryList();
+            return View(p);
         }
 
         [HttpGet]
         public ActionResult EditHeading(int id)
         {
-            List<SelectListItem> categoryValues = (from x in cm.GetList()
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.CategoryName,
-                                                       Value = x.CategoryID.ToString()
-                                                   }).ToList();
+            List<SelectListItem> categoryValues = GetCategoryList();
             ViewBag.categoryValues = categoryValues;
 
             var headingValue = hm.GetByID(id);
@@ -65,9 +66,23 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         [HttpPost]
         public ActionResult EditHeading(Heading p)
         {
-            p.HeadingStatus = true;
-            hm.HeadingUpdate(p);
-            return RedirectToAction("MyHeading");
+            //ValidationResult result = headingValidator.Validate(p);
+            //if (result.IsValid)
+            //{
+            //    p.HeadingStatus = true;
+            //    _headingService.HeadingUpdate(p);
+            //    return RedirectToAction("MyHeading");
+            //}
+            //else
+            //{
+            //    foreach (var item in result.Errors)
+            //    {
+            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            //    }
+            //}
+            //ViewBag.categoryValues = GetCategoryList();
+            return View(p);
+
         }
 
         public ActionResult DeleteHeading(int id)
@@ -76,6 +91,17 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             headingValue.HeadingStatus = false;
             hm.HeadingDelete(headingValue);
             return RedirectToAction("MyHeading");
+        }
+
+        private List<SelectListItem> GetCategoryList()
+        {
+            return cm.GetList()
+                     .Select(x => new SelectListItem
+                     {
+                         Text = x.CategoryName,
+                         Value = x.CategoryID.ToString()
+                     })
+                     .ToList();
         }
     }
 }
