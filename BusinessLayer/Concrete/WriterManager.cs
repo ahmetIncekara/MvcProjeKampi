@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concretes;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace BusinessLayer.Concrete
     public class WriterManager : IWriterService
     {
         IWriterDal _writerDal;
+        private WriterValidator _validator = new WriterValidator();
 
         public WriterManager(IWriterDal writerDal)
         {
@@ -48,19 +51,47 @@ namespace BusinessLayer.Concrete
             }
         }
 
-        public void WriterAdd(Writer writer)
+        public WriterResult WriterAdd(Writer writer)
         {
+            ValidationResult validationResult = ValidateWriter(writer);
+            if (!validationResult.IsValid)
+            {
+                return new WriterResult(false, validationResult.Errors.Select(e => new ValidationError
+                {
+                    PropertyName = e.PropertyName,
+                    ErrorMessage = e.ErrorMessage
+                }).ToList());
+            }
+
             _writerDal.Insert(writer);
+            return new WriterResult(true, null, writer);
         }
+
+        public ValidationResult ValidateWriter(Writer writer)
+        {
+            return _validator.Validate(writer);
+        }
+
 
         public void WriterDelete(Writer writer)
         {
             _writerDal.Delete(writer);
         }
 
-        public void WriterUpdate(Writer writer)
+        public WriterResult WriterUpdate(Writer writer)
         {
+            ValidationResult validationResult = ValidateWriter(writer);
+            if (!validationResult.IsValid)
+            {
+                return new WriterResult(false, validationResult.Errors.Select(e => new ValidationError
+                {
+                    PropertyName = e.PropertyName,
+                    ErrorMessage = e.ErrorMessage
+                }).ToList());
+            }
+
             _writerDal.Update(writer);
+            return new WriterResult(true, null, writer);
         }
 
         public Writer GetByWriterMail(string writerMail)

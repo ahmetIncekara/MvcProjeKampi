@@ -81,8 +81,10 @@
     <Compile Include="concretes\HeadingResult.cs" />
     <Compile Include="concretes\ImageFile.cs" />
     <Compile Include="concretes\Message.cs" />
+    <Compile Include="concretes\MessageResult.cs" />
     <Compile Include="concretes\ValidationError.cs" />
     <Compile Include="concretes\Writer.cs" />
+    <Compile Include="concretes\WriterResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

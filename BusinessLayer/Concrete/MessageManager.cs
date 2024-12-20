@@ -1,6 +1,9 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concretes;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,8 @@ namespace BusinessLayer.Concrete
     public class MessageManager : IMessageService
     {
         IMessageDal _messageDal;
+        private MessageValidator _validator = new MessageValidator();
+
 
         public MessageManager(IMessageDal messageDal)
         {
@@ -42,10 +47,28 @@ namespace BusinessLayer.Concrete
             return _messageDal.Count(x => x.SenderMail == userMail);
         }
 
-        public void MessageAdd(Message message)
+        public MessageResult MessageAdd(Message message)
         {
+            ValidationResult validationResult = ValidateMessage(message);
+            if (!validationResult.IsValid)
+            {
+                return new MessageResult(false, validationResult.Errors.Select(e => new ValidationError
+                {
+                    PropertyName = e.PropertyName,
+                    ErrorMessage = e.ErrorMessage
+                }).ToList());
+            }
+
             _messageDal.Insert(message);
+            return new MessageResult(true, null, message);
+            
         }
+
+        public ValidationResult ValidateMessage(Message message)
+        {
+            return _validator.Validate(message);
+        }
+
 
         public void MessageDelete(Message message)
         {

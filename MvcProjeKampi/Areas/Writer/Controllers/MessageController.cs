@@ -14,7 +14,6 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
     {
         //ContactManager cm = new ContactManager(new EFContactDal());
         MessageManager mm = new MessageManager(new EFMessageDal());
-        MessageValidator messageValidator = new MessageValidator();
 
         public ActionResult Inbox()
         {
@@ -37,22 +36,20 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         [HttpPost]
         public ActionResult NewMessage(EntityLayer.Concretes.Message p)
         {
-            ValidationResult validationResult = messageValidator.Validate(p);
-            if (validationResult.IsValid)
+            p.MessageDate = DateTime.Now;
+            p.SenderMail = CurrentWriter.WriterMail;
+            p.Read = false;
+            var messageResult = mm.MessageAdd(p);
+            if (messageResult.IsSuccess)
             {
-                p.SenderMail = CurrentWriter.WriterMail;
-                p.MessageDate = DateTime.Now;
-                p.Read = false;
-                mm.MessageAdd(p);
                 return RedirectToAction("Sendbox");
             }
-            else
+
+            foreach (var error in messageResult.Errors)
             {
-                foreach (var item in validationResult.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
+
             return View();
         }
 

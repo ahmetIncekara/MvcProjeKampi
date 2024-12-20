@@ -15,7 +15,6 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EFWriterDal());
-        WriterValidator writerValidator = new WriterValidator();
 
         public ActionResult Index()
         {
@@ -38,19 +37,17 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         [HttpPost]
         public ActionResult AddWriter(EntityLayer.Concretes.Writer p)
         {
-            ValidationResult result = writerValidator.Validate(p);
-            if (result.IsValid)
+            var writerResult = wm.WriterAdd(p);
+            if (writerResult.IsSuccess)
             {
-                wm.WriterAdd(p);
                 return RedirectToAction("Index");
             }
-            else
+
+            foreach (var error in writerResult.Errors)
             {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
+
             return View();
         }
 
@@ -64,19 +61,17 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         [HttpPost]
         public ActionResult EditWriter(EntityLayer.Concretes.Writer p)
         {
-            ValidationResult result = writerValidator.Validate(p);
-            if (result.IsValid)
+            var writerResult = wm.WriterUpdate(p);
+            if (writerResult.IsSuccess)
             {
-                wm.WriterUpdate(p);
                 return RedirectToAction("Index");
             }
-            else
+
+            foreach (var error in writerResult.Errors)
             {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
+
             return View();
         }
     }

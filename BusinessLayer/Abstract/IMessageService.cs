@@ -11,7 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<Message> GetListInbox(string WriterMail);
         List<Message> GetListSendbox(string WriterMail);
-        void MessageAdd(Message message);
+        MessageResult MessageAdd(Message message);
         Message GetByID(int id);
         int GetSendMessageCountByUser(string userMail);
         int GetReceiveMessageCountByUser(string userMail);
