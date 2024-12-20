@@ -2589,6 +2589,7 @@
     <Content Include="AdminLTE-3.0.4\login-form-20\scss\bootstrap\_utilities.scss" />
     <Content Include="AdminLTE-3.0.4\login-form-20\scss\bootstrap\_variables.scss" />
     <Content Include="AdminLTE-3.0.4\login-form-20\scss\style.scss" />
+    <Content Include="Areas\Writer\Views\Message\Deletedbox.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

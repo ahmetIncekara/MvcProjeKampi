@@ -2,19 +2,32 @@
 @model List<Message>
 
 @{
-    ViewBag.Title = "Sendbox";
+    ViewBag.Title = "Deletedbox";
     Layout = "~/Areas/Writer/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
 <html>
+
+
+
 <body class="hold-transition sidebar-mini">
+
+    <style>
+        .flex-child {
+            white-space: nowrap;
+            width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Gönderilen Mesaj Sayfası</h1>
+                    <h1>Gelen Mesaj Sayfası</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -31,11 +44,11 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
-                        @using (Html.BeginForm("SendboxDelete", "Message", FormMethod.Post))
+                        @using (Html.BeginForm("RecycleDelete", "Message", FormMethod.Post))
                         {
 
                             <div class="card-header">
-                                <h3 class="card-title">Gönderilen Mesajlar</h3>
+                                <h3 class="card-title">Çöp Kutusu</h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm">
@@ -86,9 +99,19 @@
                                                         </div>
                                                     </td>
                                                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                                    <td class="mailbox-name"><a href="/Writer/Message/GetSendMessageDetails/@item.MessageID">@item.ReceiverMail</a></td>
+                                                    <td class="mailbox-name">
+                                                        <a href="/Writer/Message/GetReceiveMessageDetails/@item.MessageID">
+                                                            @item.SenderMail
+                                                        </a>
+                                                    </td>
+
                                                     <td class="mailbox-subject">
-                                                        <b>@item.Subject</b> - @(item.MessageContent.Length > 30 ? @item.MessageContent.Substring(0, 30) + "..." : @item.MessageContent)
+                                                        <b>@item.Subject</b>
+                                                    </td>
+                                                    <td class="mailbox-subject">
+                                                        <div class="flex-child">
+                                                            @Html.Raw(item.MessageContent)
+                                                        </div>
                                                     </td>
                                                     <td class="mailbox-attachment"></td>
                                                     <td class="mailbox-date">@item.MessageDate.ToString("dd.MMM.yyyy")</td>
@@ -141,6 +164,9 @@
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+
     <!-- Page Script -->
     <script>
         $(function () {

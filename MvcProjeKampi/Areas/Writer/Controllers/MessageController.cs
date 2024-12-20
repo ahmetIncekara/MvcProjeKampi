@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using FluentValidation.Results;
@@ -24,6 +25,12 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         public ActionResult Sendbox()
         {
             var messageValues = mm.GetListSendbox(CurrentWriter.WriterMail);
+            return View(messageValues);
+        }
+
+        public ActionResult Deletedbox()
+        {
+            var messageValues = mm.GetListDeleted(CurrentWriter.WriterMail);
             return View(messageValues);
         }
 
@@ -66,6 +73,57 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
         {
             var messageValue = mm.GetByID(id);
             return View(messageValue);
+        }
+
+        public ActionResult InboxDelete(List<int> SelectedMessageIds)
+        {
+            if (SelectedMessageIds == null || !SelectedMessageIds.Any())
+            {
+                TempData["Message"] = "Hiçbir mesaj seçilmedi.";
+                return RedirectToAction("Inbox");
+            }
+
+            foreach (var messageId in SelectedMessageIds)
+            {
+                mm.MessageDelete(messageId);
+            }
+
+            TempData["Message"] = "Seçili mesajlar başarıyla işlendi.";
+            return RedirectToAction("Inbox");
+        }
+
+        public ActionResult SendboxDelete(List<int> SelectedMessageIds)
+        {
+            if (SelectedMessageIds == null || !SelectedMessageIds.Any())
+            {
+                TempData["Message"] = "Hiçbir mesaj seçilmedi.";
+                return RedirectToAction("Sendbox");
+            }
+
+            foreach (var messageId in SelectedMessageIds)
+            {
+                mm.MessageDelete(messageId);
+            }
+
+            TempData["Message"] = "Seçili mesajlar başarıyla işlendi.";
+            return RedirectToAction("Sendbox");
+        }
+
+        public ActionResult RecycleDelete(List<int> SelectedMessageIds)
+        {
+            if (SelectedMessageIds == null || !SelectedMessageIds.Any())
+            {
+                TempData["Message"] = "Hiçbir mesaj seçilmedi.";
+                return RedirectToAction("Deletedbox");
+            }
+
+            foreach (var messageId in SelectedMessageIds)
+            {
+                mm.MessageDelete(messageId);
+            }
+
+            TempData["Message"] = "Seçili mesajlar başarıyla işlendi.";
+            return RedirectToAction("Deletedbox");
         }
 
         public PartialViewResult LeftSideMenu()

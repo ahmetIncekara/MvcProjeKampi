@@ -30,18 +30,19 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListInbox(string WriterMail)
         {
-            return _messageDal.List(x => x.ReceiverMail == WriterMail);
+            return _messageDal.List(x => x.ReceiverMail == WriterMail && x.Delete == 0);
         }
 
         public List<Message> GetListSendbox(string WriterMail)
         {
-            return _messageDal.List(x => x.SenderMail == WriterMail);
+            return _messageDal.List(x => x.SenderMail == WriterMail && x.Delete == 0);
         }
 
         public int GetReceiveMessageCountByUser(string userMail)
         {
             return _messageDal.Count(x => x.ReceiverMail == userMail && x.Read == false);
         }
+
         public int GetSendMessageCountByUser(string userMail)
         {
             return _messageDal.Count(x => x.SenderMail == userMail);
@@ -60,8 +61,7 @@ namespace BusinessLayer.Concrete
             }
 
             _messageDal.Insert(message);
-            return new MessageResult(true, null, message);
-            
+            return new MessageResult(true, null, message);            
         }
 
         public ValidationResult ValidateMessage(Message message)
@@ -69,15 +69,21 @@ namespace BusinessLayer.Concrete
             return _validator.Validate(message);
         }
 
-
-        public void MessageDelete(Message message)
+        public void MessageDelete(int id)
         {
-            _messageDal.Delete(message);
+            Message value = GetByID(id);
+            value.Delete++;
+            MessageUpdate(value);
         }
 
         public void MessageUpdate(Message message)
         {
             _messageDal.Update(message);
+        }
+
+        public List<Message> GetListDeleted(string WriterMail)
+        {
+            return _messageDal.List(x => (x.ReceiverMail == WriterMail || x.SenderMail == WriterMail) && x.Delete == 1);
         }
     }
 }

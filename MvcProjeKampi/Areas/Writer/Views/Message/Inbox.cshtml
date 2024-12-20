@@ -44,115 +44,120 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">Gelen Mesajlar</h3>
+                        @using (Html.BeginForm("InboxDelete", "Message", FormMethod.Post))
+                        {
 
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" placeholder="Mail Kutusunda Ara">
-                                    <div class="input-group-append">
-                                        <div class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
+                            <div class="card-header">
+                                <h3 class="card-title">Gelen Mesajlar</h3>
+
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" placeholder="Mail Kutusunda Ara">
+                                        <div class="input-group-append">
+                                            <div class="btn btn-primary">
+                                                <i class="fas fa-search"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /.card-tools -->
                             </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body p-0">
-                            <div class="mailbox-controls">
-                                <!-- Check all button -->
-                                <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                    <i class="far fa-square"></i>
-                                </button>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                                <div class="float-right">
-                                    1-50/200
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <!-- Check all button -->
+                                    <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                                        <i class="far fa-square"></i>
+                                    </button>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                                        <button type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                                     </div>
                                     <!-- /.btn-group -->
-                                </div>
-                                <!-- /.float-right -->
-                            </div>
-                            <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-striped">
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    <div class="icheck-primary">
-                                                        <input type="checkbox" value="" id="check1">
-                                                        <label for="check1"></label>
-                                                    </div>
-                                                </td>
-                                                <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                                <td class="mailbox-name">
-                                                    <a href="/Writer/Message/GetReceiveMessageDetails/@item.MessageID">
-                                                        @if (item.Read)
-                                                        {
-                                                            @item.SenderMail
-                                                        }
-                                                        else
-                                                        {
-                                                            <b>@item.SenderMail</b>
-                                                        }
-                                                    </a>
-                                                </td>
-
-                                                <td class="mailbox-subject">
-                                                    <b>@item.Subject</b>
-                                                </td>
-                                                <td class="mailbox-subject">
-                                                    <div class="flex-child">
-                                                        @Html.Raw(item.MessageContent)
-                                                    </div>
-                                                </td>
-                                                <td class="mailbox-attachment"></td>
-                                                <td class="mailbox-date">@item.MessageDate.ToString("dd.MMM.yyyy")</td>
-                                            </tr>
-
-                                        }
-                                    </tbody>
-                                </table>
-                                <!-- /.table -->
-                            </div>
-                            <!-- /.mail-box-messages -->
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer p-0">
-                            <div class="mailbox-controls">
-                                <!-- Check all button -->
-                                <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                    <i class="far fa-square"></i>
-                                </button>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                                <div class="float-right">
-                                    1-50/200
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+                                    <div class="float-right">
+                                        1-50/200
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                        <!-- /.btn-group -->
                                     </div>
-                                    <!-- /.btn-group -->
+                                    <!-- /.float-right -->
                                 </div>
-                                <!-- /.float-right -->
+                                <div class="table-responsive mailbox-messages">
+                                    <table class="table table-hover table-striped">
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="icheck-primary">
+                                                            <input type="checkbox" name="SelectedMessageIds" value="@item.MessageID" id="check1">
+                                                            <label for="check1"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                                    <td class="mailbox-name">
+                                                        <a href="/Writer/Message/GetReceiveMessageDetails/@item.MessageID">
+                                                            @if (item.Read)
+                                                            {
+                                                                @item.SenderMail
+                                                            }
+                                                            else
+                                                            {
+                                                                <b>@item.SenderMail</b>
+                                                            }
+                                                        </a>
+                                                    </td>
+
+                                                    <td class="mailbox-subject">
+                                                        <b>@item.Subject</b>
+                                                    </td>
+                                                    <td class="mailbox-subject">
+                                                        <div class="flex-child">
+                                                            @Html.Raw(item.MessageContent)
+                                                        </div>
+                                                    </td>
+                                                    <td class="mailbox-attachment"></td>
+                                                    <td class="mailbox-date">@item.MessageDate.ToString("dd.MMM.yyyy")</td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <!-- /.table -->
+                                </div>
+                                <!-- /.mail-box-messages -->
                             </div>
-                        </div>
+                            <!-- /.card-body -->
+                            <!--<div class="card-footer p-0">
+                                <div class="mailbox-controls">-->
+                                    <!-- Check all button -->
+                                    <!--<button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                                        <i class="far fa-square"></i>
+                                    </button>
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+                                    </div>-->
+                                    <!-- /.btn-group -->
+                                    <!--<button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+                                    <div class="float-right">
+                                        1-50/200
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                                        </div>-->
+                                        <!-- /.btn-group -->
+                                    <!--</div>-->
+                                    <!-- /.float-right -->
+                                <!--</div>
+                            </div>-->
+                        }
+
                     </div>
                     <!-- /.card -->
                 </div>
@@ -167,6 +172,9 @@
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+
     <!-- Page Script -->
     <script>
         $(function () {

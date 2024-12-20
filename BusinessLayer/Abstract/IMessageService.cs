@@ -11,11 +11,12 @@ namespace BusinessLayer.Abstract
     {
         List<Message> GetListInbox(string WriterMail);
         List<Message> GetListSendbox(string WriterMail);
+        List<Message> GetListDeleted(string WriterMail);
         MessageResult MessageAdd(Message message);
         Message GetByID(int id);
         int GetSendMessageCountByUser(string userMail);
         int GetReceiveMessageCountByUser(string userMail);
-        void MessageDelete(Message message);
+        void MessageDelete(int id);
         void MessageUpdate(Message message);
 
     }
