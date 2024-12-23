@@ -10,10 +10,9 @@
 @using (Html.BeginForm("NewContent", "Content", FormMethod.Post))
 {
     <div class="form-group">
-        @ViewBag.HeadingID
         @Html.HiddenFor(x => x.HeadingID, new { Value = ViewBag.HeadingID })
         @Html.Label("İçerik")
-        @Html.TextAreaFor(x => x.ContentValue, 4, 30, new { @class = "form-control" })
+        @Html.TextAreaFor(x => x.ContentValue, 10, 30, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.ContentValue, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
