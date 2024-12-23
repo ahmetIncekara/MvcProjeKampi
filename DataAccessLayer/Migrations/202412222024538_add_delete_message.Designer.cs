@@ -7,13 +7,13 @@ namespace DataAccessLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class mig_delete_add_message : IMigrationMetadata
+    public sealed partial class add_delete_message : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mig_delete_add_message));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_delete_message));
         
         string IMigrationMetadata.Id
         {
-            get { return "202412201129229_mig_delete_add_message"; }
+            get { return "202412222024538_add_delete_message"; }
         }
         
         string IMigrationMetadata.Source

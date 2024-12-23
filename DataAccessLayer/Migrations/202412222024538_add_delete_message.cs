@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class mig_delete_add_message : DbMigration
+    public partial class add_delete_message : DbMigration
     {
         public override void Up()
         {

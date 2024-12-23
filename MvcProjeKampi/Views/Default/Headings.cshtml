@@ -1,4 +1,5 @@
-﻿
+﻿@model List<EntityLayer.Concretes.Heading>
+
 @{
     Layout = null;
 }
@@ -65,11 +66,8 @@ to get the desired effect
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
                     <div class="info">
-                        <a href="#" class="d-block">Yazar Paneli</a>
+                        <a href="#" class="d-block">Başlıklar</a>
                     </div>
                 </div>
 
@@ -77,64 +75,17 @@ to get the desired effect
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview">
-                            <a href="/Writer/Writer/WriterProfile" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Profilim
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Writer/Heading/MyHeading" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Başlıklarım
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Writer/Heading/AllHeading" class="nav-link">
-                                <i class="nav-icon fas fa-list-alt"></i>
-                                <p>
-                                    Tüm Başlıklar
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="/Writer/Message/Inbox" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Mesajlar
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Writer/Content/MyContent" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>
-                                    Yazılarım
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Siteye Git
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-plus-square"></i>
-                                <p>
-                                    Çıkış Yap
-                                </p>
-                            </a>
-                        </li>
+                        with font-awesome or any other icon font library -->
+                        @foreach (var item in Model)
+                        {
+                            <li class="nav-item">
+                                <a href="/Default/Headings/@item.HeadingID" 
+                                   class="nav-link" 
+                                   style="white-space: nowrap">
+                                    @item.HeadingName
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -146,7 +97,7 @@ to get the desired effect
         <div class="content-wrapper">
             <!-- Main content -->
             <div class="content" style="padding-top:20px">
-                @RenderBody()
+                @Html.Action("Index", "Default")
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content -->

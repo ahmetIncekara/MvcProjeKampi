@@ -24,6 +24,12 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             return View(headingValues);
         }
 
+        public ActionResult AllHeading()
+        {
+            var headingValues = hm.GetList();
+            return View(headingValues);
+        }
+
         [HttpGet]
         public ActionResult NewHeading()
         {

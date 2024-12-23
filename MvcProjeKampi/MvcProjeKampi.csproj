@@ -172,6 +172,7 @@
     <Compile Include="Areas\Writer\Controllers\HeadingController.cs" />
     <Compile Include="Areas\Writer\Controllers\MessageController.cs" />
     <Compile Include="Areas\Writer\WriterAreaRegistration.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2590,6 +2591,8 @@
     <Content Include="AdminLTE-3.0.4\login-form-20\scss\bootstrap\_variables.scss" />
     <Content Include="AdminLTE-3.0.4\login-form-20\scss\style.scss" />
     <Content Include="Areas\Writer\Views\Message\Deletedbox.cshtml" />
+    <Content Include="Areas\Writer\Views\Heading\AllHeading.cshtml" />
+    <Content Include="Areas\Writer\Views\Content\NewContent.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2618,11 +2621,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_WriterLayout.cshtml" />
+    <Content Include="Views\Default\Headings.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Writer\Views\Base\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
