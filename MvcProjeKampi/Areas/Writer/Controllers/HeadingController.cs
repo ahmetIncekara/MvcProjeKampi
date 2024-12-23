@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
@@ -24,9 +26,9 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             return View(headingValues);
         }
 
-        public ActionResult AllHeading()
+        public ActionResult AllHeading(int p = 1)
         {
-            var headingValues = hm.GetList();
+            var headingValues = hm.GetList().ToPagedList(p, 4);
             return View(headingValues);
         }
 

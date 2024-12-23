@@ -1,4 +1,7 @@
-﻿@model List<EntityLayer.Concretes.Heading>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<EntityLayer.Concretes.Heading>
 
 @{
     ViewBag.Title = "AllHeading";
@@ -129,3 +132,21 @@
     <!-- /.content -->
 </body>
 </html>
+
+@Html.PagedListPager(Model, p => Url.Action("AllHeading", new { p }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            DisplayLinkToIndividualPages = true,
+            MaximumPageNumbersToDisplay = 3,
+            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+            EllipsesFormat = "...",
+            LinkToFirstPageFormat = "<<",            // İlk sayfa bağlantısı için simge
+            LinkToPreviousPageFormat = "<",          // Önceki sayfa bağlantısı için simge
+            LinkToNextPageFormat = ">",              // Sonraki sayfa bağlantısı için simge
+            LinkToLastPageFormat = ">>"              // Son sayfa bağlantısı için simge
+        })
+<link href="~/Content/PagedList.css" rel="stylesheet" />
