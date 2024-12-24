@@ -2600,6 +2600,7 @@
     <Content Include="Areas\Writer\Views\Message\Deletedbox.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\AllHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Content\NewContent.cshtml" />
+    <Content Include="Areas\Writer\Views\Writer\WriterProfile.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

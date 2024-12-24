@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
-    public class WriterController : Controller
+    public class WriterController : BaseController
     {
         WriterManager wm = new WriterManager(new EFWriterDal());
 
@@ -22,11 +22,30 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             return View(writerValues);
         }
 
+        [HttpGet]
         public ActionResult WriterProfile()
         {
-            return View();
+            var value = wm.GetByID(CurrentWriter.WriterID);
+            ViewBag.p = CurrentWriter.WriterMail;
+            return View(value);
         }
 
+        [HttpPost]
+        public ActionResult WriterProfile(EntityLayer.Concretes.Writer p)
+        {
+            var writerResult = wm.WriterUpdate(p);
+            if (writerResult.IsSuccess)
+            {
+                return RedirectToAction("AllHeading","Heading");
+            }
+
+            foreach (var error in writerResult.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            return View();
+        }
 
         [HttpGet]
         public ActionResult AddWriter()

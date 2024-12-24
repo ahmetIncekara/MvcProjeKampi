@@ -13,7 +13,6 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
 {
     public class MessageController : BaseController
     {
-        //ContactManager cm = new ContactManager(new EFContactDal());
         MessageManager mm = new MessageManager(new EFMessageDal());
 
         public ActionResult Inbox()
