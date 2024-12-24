@@ -166,11 +166,12 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ErrorPageController.cs" />
+    <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Areas\Admin\Controllers\GalleryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HeadingController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WriterController.cs" />
     <Compile Include="Areas\Writer\Controllers\BaseController.cs" />
     <Compile Include="Areas\Writer\Controllers\ContentController.cs" />
     <Compile Include="Areas\Writer\Controllers\LoginController.cs" />
@@ -2472,7 +2473,7 @@
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\LeftSideMenu.cshtml" />
     <Content Include="Areas\Admin\Views\Content\ContentByHeading.cshtml" />
-    <Content Include="Areas\Admin\Views\ErrorPage\Page404.cshtml" />
+    <Content Include="Views\ErrorPage\Page404.cshtml" />
     <Content Include="Areas\Admin\Views\Gallery\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Heading\AddHeading.cshtml" />
     <Content Include="Areas\Admin\Views\Heading\EditHeading.cshtml" />
@@ -2485,7 +2486,6 @@
     <Content Include="Areas\Admin\Views\Message\Sendbox.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\AddWriter.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\EditWriter.cshtml" />
-    <Content Include="Areas\Writer\Views\Writer\Index.cshtml" />
     <Content Include="Areas\Writer\Views\Message\Inbox.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\EditHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Heading\MyHeading.cshtml" />
@@ -2601,6 +2601,8 @@
     <Content Include="Areas\Writer\Views\Heading\AllHeading.cshtml" />
     <Content Include="Areas\Writer\Views\Content\NewContent.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\WriterProfile.cshtml" />
+    <Content Include="Areas\Writer\Views\Writer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Writer\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

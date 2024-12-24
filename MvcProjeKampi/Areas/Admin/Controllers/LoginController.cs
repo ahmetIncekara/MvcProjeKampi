@@ -31,7 +31,7 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
             {
                 FormsAuthentication.SetAuthCookie(p.AdminUserName, false);
                 Session["AdminUserName"] = p.AdminUserName;
-                return RedirectToAction("Index", "AdminCategory");
+                return RedirectToAction("Index", "Category");
             }
             return RedirectToAction("Index");
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcProjeKampi.Areas.Admin.Controllers
+namespace MvcProjeKampi.Controllers
 {
     public class ErrorPageController : Controller
     {
