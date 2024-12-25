@@ -2603,6 +2603,8 @@
     <Content Include="Areas\Writer\Views\Writer\WriterProfile.cshtml" />
     <Content Include="Areas\Writer\Views\Writer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Writer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ContentAll.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

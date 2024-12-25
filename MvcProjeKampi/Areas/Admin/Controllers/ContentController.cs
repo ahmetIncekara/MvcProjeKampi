@@ -17,10 +17,24 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult ContentAll(string p)
+        {
+            if (!string.IsNullOrEmpty(p))
+            {
+                var values = cm.GetList(p);
+                return View(values);
+            }
+            else
+            {
+                var values = cm.GetList();
+                return View(values);
+            }
+        }
+
         public ActionResult ContentByHeading(int id)
         {
-            var contentValues = cm.GetListByHeadingID(id);
-            return View(contentValues);
+            var values = cm.GetListByHeadingID(id);
+            return View(values);
         }
 
 

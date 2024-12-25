@@ -1,0 +1,56 @@
+﻿@using EntityLayer.Concretes
+
+@model List<Content>
+
+@{
+    ViewBag.Title = "ContentAll";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("ContentAll", "Content", FormMethod.Post))
+{
+    <div class="card-tools">
+        <div class="input-group input-group-sm">
+            <input type="text" name="p" class="form-control" placeholder="Yazılarda Ara">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+
+<div class="timeline timeline-inverse">
+    @foreach (var item in Model)
+    {
+        <!-- timeline time label -->
+        <div class="time-label">
+            <span class="bg-success">
+                @item.ContentDate.ToString("dd.MMM.yyyy")
+            </span>
+        </div>
+        <!-- /.timeline-label -->
+        <!-- timeline item -->
+        <div>
+            <i class="fas fa-comments bg-warning"></i>
+
+            <div class="timeline-item">
+                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
+
+                <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+
+                <div class="timeline-body">
+                    @item.ContentValue
+                </div>
+                @*<div class="timeline-footer">
+                        <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
+                    </div>*@
+            </div>
+        </div>
+        <!-- END timeline item -->
+    }
+</div>
+

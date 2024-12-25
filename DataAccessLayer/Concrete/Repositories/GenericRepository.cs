@@ -29,8 +29,6 @@ namespace DataAccessLayer.Concrete.Repositories
             var deletedEntity = c.Entry(p);
             deletedEntity.State = EntityState.Deleted;
 
-            //_object.Remove(p);
-
             c.SaveChanges();
         }
 
@@ -43,8 +41,6 @@ namespace DataAccessLayer.Concrete.Repositories
         {
             var addedEntity = c.Entry(p);
             addedEntity.State = EntityState.Added;
-
-            //_object.Add(p);
 
             c.SaveChanges();
         }
