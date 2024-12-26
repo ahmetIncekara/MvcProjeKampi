@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace MvcProjeKampi.Controllers
 {
     [AllowAnonymous]
-    public class DefaultController : Controller
+    public class DefaultController : BaseController
     {
         HeadingManager hm = new HeadingManager(new EFHeadingDal());
         ContentManager cm = new ContentManager(new EFContentDal());
@@ -33,5 +33,21 @@ namespace MvcProjeKampi.Controllers
                 return PartialView(values);
             }
         }
+
+        public PartialViewResult UserDataScreen()
+        {
+            ViewData["ID"] = 0;
+            ViewData["Name"] = "";
+            ViewData["Image"] = "";
+
+            if (CurrentWriter.WriterID > 0)
+            {
+                ViewData["ID"] = CurrentWriter.WriterID;
+                ViewData["Name"] = CurrentWriter.WriterName + " " + CurrentWriter.WriterSurName;
+                ViewData["Image"] = CurrentWriter.WriterImage;
+            }
+            return PartialView();
+        }
+
     }
 }

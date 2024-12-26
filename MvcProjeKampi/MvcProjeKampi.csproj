@@ -172,7 +172,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\WriterController.cs" />
-    <Compile Include="Areas\Writer\Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Areas\Writer\Controllers\ContentController.cs" />
     <Compile Include="Areas\Writer\Controllers\LoginController.cs" />
     <Compile Include="Areas\Writer\Controllers\WriterController.cs" />
@@ -2605,6 +2605,7 @@
     <Content Include="Areas\Admin\Views\Writer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Content\ContentAll.cshtml" />
+    <Content Include="Views\Default\UserDataScreen.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

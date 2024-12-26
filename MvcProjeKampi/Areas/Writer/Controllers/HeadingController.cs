@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using MvcProjeKampi.Controllers;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {

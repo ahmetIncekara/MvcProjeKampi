@@ -36,14 +36,6 @@ to get the desired effect
 |---------------------------------------------------------|
 
 
-    72. DERSDE YAPILACAK ÖDEVLER
-    * Gelen kutusunda okundu okunmadı seçeneği *
-    * Okunmamış mesaj sayısı *
-    * Hakkımızda ekranında Aktif-Pasif yap
-    * Admin bilgileri hashle *
-    * Oturum açma işlemini mimariye taşı *
-    * Rolleme işlemi mimariye taşınsın *
-    * Size ait bir yetenek kartı sayfası
 
 
 -->
@@ -63,15 +55,8 @@ to get the desired effect
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Yazar Paneli</a>
-                    </div>
-                </div>
+
+                @Html.Action("UserDataScreen", "Default", new { area = "" });
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">

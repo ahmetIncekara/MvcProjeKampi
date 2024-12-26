@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcProjeKampi.Controllers;
 
 namespace MvcProjeKampi.Areas.Writer.Controllers
 {
@@ -15,16 +16,32 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
     {
         MessageManager mm = new MessageManager(new EFMessageDal());
 
-        public ActionResult Inbox()
+        public ActionResult Inbox(string p)
         {
-            var messageValues = mm.GetListInbox(CurrentWriter.WriterMail);
-            return View(messageValues);
+            if (!string.IsNullOrEmpty(p))
+            {
+                var messageValues = mm.GetListInbox(CurrentWriter.WriterMail, p);
+                return View(messageValues);
+            }
+            else
+            {
+                var messageValues = mm.GetListInbox(CurrentWriter.WriterMail);
+                return View(messageValues);
+            }
         }
 
-        public ActionResult Sendbox()
+        public ActionResult Sendbox(string p)
         {
-            var messageValues = mm.GetListSendbox(CurrentWriter.WriterMail);
-            return View(messageValues);
+            if (!string.IsNullOrEmpty(p))
+            {
+                var messageValues = mm.GetListSendbox(CurrentWriter.WriterMail, p);
+                return View(messageValues);
+            }
+            else
+            {
+                var messageValues = mm.GetListSendbox(CurrentWriter.WriterMail);
+                return View(messageValues);
+            }
         }
 
         public ActionResult Deletedbox()

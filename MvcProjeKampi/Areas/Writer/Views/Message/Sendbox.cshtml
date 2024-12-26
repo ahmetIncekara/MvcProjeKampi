@@ -31,25 +31,30 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
-                        @using (Html.BeginForm("SendboxDelete", "Message", FormMethod.Post))
-                        {
 
+                        @using (Html.BeginForm("Sendbox", "Message", FormMethod.Post))
+                        {
                             <div class="card-header">
                                 <h3 class="card-title">Gönderilen Mesajlar</h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" placeholder="Mail Kutusunda Ara">
+                                        <input type="text" name="p" class="form-control" placeholder="Mail Kutusunda Ara">
                                         <div class="input-group-append">
-                                            <div class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary">
                                                 <i class="fas fa-search"></i>
-                                            </div>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.card-tools -->
                             </div>
                             <!-- /.card-header -->
+                        }
+
+                        @using (Html.BeginForm("SendboxDelete", "Message", FormMethod.Post))
+                        {
+
                             <div class="card-body p-0">
                                 <div class="mailbox-controls">
                                     <!-- Check all button -->
@@ -101,32 +106,32 @@
                                 </div>
                                 <!-- /.mail-box-messages -->
                             </div>
-                            <!-- /.card-body -->
-                            <!--<div class="card-footer p-0">
-                                <div class="mailbox-controls">-->
-                                    <!-- Check all button -->
-                                    <!--<button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                        <i class="far fa-square"></i>
-                                    </button>
-                                    <div class="btn-group">
-                                        <button type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                                    </div>-->
-                                    <!-- /.btn-group -->
-                                    <!--<button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                                    <div class="float-right">
-                                        1-50/200
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                                        </div>-->
-                                        <!-- /.btn-group -->
-                                    <!--</div>-->
-                                    <!-- /.float-right -->
-                                <!--</div>
-                            </div>-->
                         }
+                        <!-- /.card-body -->
+                        <!--<div class="card-footer p-0">
+                        <div class="mailbox-controls">-->
+                        <!-- Check all button -->
+                        <!--<button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                            <i class="far fa-square"></i>
+                        </button>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+                        </div>-->
+                        <!-- /.btn-group -->
+                        <!--<button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+                        <div class="float-right">
+                            1-50/200
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                            </div>-->
+                        <!-- /.btn-group -->
+                        <!--</div>-->
+                        <!-- /.float-right -->
+                        <!--</div>
+                        </div>-->
                     </div>
                     <!-- /.card -->
                 </div>

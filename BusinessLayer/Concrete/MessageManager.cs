@@ -33,9 +33,19 @@ namespace BusinessLayer.Concrete
             return _messageDal.List(x => x.ReceiverMail == WriterMail && x.Delete == 0);
         }
 
+        public List<Message> GetListInbox(string WriterMail, string p)
+        {
+            return _messageDal.List(x => (x.ReceiverMail == WriterMail && x.Delete == 0) && (x.MessageContent.Contains(p)));
+        }
+
         public List<Message> GetListSendbox(string WriterMail)
         {
             return _messageDal.List(x => x.SenderMail == WriterMail && x.Delete == 0);
+        }
+
+        public List<Message> GetListSendbox(string WriterMail, string p)
+        {
+            return _messageDal.List(x => (x.SenderMail == WriterMail && x.Delete == 0) && (x.MessageContent.Contains(p)));
         }
 
         public int GetReceiveMessageCountByUser(string userMail)

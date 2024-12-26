@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcProjeKampi.Areas.Writer.Controllers
+namespace MvcProjeKampi.Controllers
 {
     public class BaseController : Controller
     {
@@ -17,9 +17,10 @@ namespace MvcProjeKampi.Areas.Writer.Controllers
             var writerMail = (string)Session["WriterMail"];
             if (writerMail == null)
             {
-                filterContext.Result = new RedirectToRouteResult(
-                    new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Login" })
-                );
+                CurrentWriter = new EntityLayer.Concretes.Writer();
+                //filterContext.Result = new RedirectToRouteResult(
+                //    new System.Web.Routing.RouteValueDictionary(new { action = "Index", controller = "Login", area = "Writer" })
+                //);
             }
             else
             {

@@ -64,12 +64,15 @@ to get the desired effect
 
             <!-- Sidebar -->
             <div class="sidebar">
+
+                @Html.Action("UserDataScreen", "Default")
+
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="info">
-                        <a href="/Default/Headings" class="d-block">Başlıklar</a>
-                    </div>
-                </div>
+                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="info">
+                            <a href="/Writer/Login/Index" class="d-block">Giriş Yap</a>
+                        </div>
+                    </div>*@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -79,8 +82,8 @@ to get the desired effect
                         @foreach (var item in Model)
                         {
                             <li class="nav-item">
-                                <a href="/Default/Headings/@item.HeadingID" 
-                                   class="nav-link" 
+                                <a href="/Default/Headings/@item.HeadingID"
+                                   class="nav-link"
                                    style="white-space: nowrap">
                                     @item.HeadingName
                                 </a>
