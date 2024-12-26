@@ -15,8 +15,14 @@ namespace MvcProjeKampi.Areas.Admin.Controllers
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
         WriterManager wm = new WriterManager(new EFWriterDal());
 
-        [Authorize]
+       
         public ActionResult Index()
+        {
+            var headingValues = hm.GetList();
+            return View(headingValues);
+        }
+
+        public ActionResult HeadingReport()
         {
             var headingValues = hm.GetList();
             return View(headingValues);

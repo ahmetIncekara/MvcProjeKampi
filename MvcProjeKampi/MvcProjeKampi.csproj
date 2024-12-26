@@ -2606,6 +2606,7 @@
     <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Content\ContentAll.cshtml" />
     <Content Include="Views\Default\UserDataScreen.cshtml" />
+    <Content Include="Areas\Admin\Views\Heading\HeadingReport.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
