@@ -1,0 +1,23 @@
+Visual Studio 2022 de MVC projesi açmak için "ASP.NET Web Application (.NET Framework)" seçmek gerekiyor. Eğer bu seçenek yoksa "Visual Studio Installer" dan "değiştir" seçeneği açıyoruz
+gelen ekranda sağ tarafta "Yükleme ayrıntıları" kısmından "ASP.NET ve web geliştirme" seçeneğinin
+altından "isteğe bağlı" kısmından ".NET Framework proje ve öğe şablonları" seçeneğini kurun.
+
+
+Access Modifiers (Erişim Belirleyiciler) : program içerisinde tanımlanan değişkenlerin erişim sınırlarını belirler.
+Private   : Sadece kendi class ı içinde erişilebilir. Erişim belirleyiciler içerisinde erişim alanını en çok sınırlandıran ve de bir değişkenin varsayılan erişim belirleyicisidir.
+Public    : Kendi class ve paketin dışında her yerden erişilebilir. Public tipinde hiçbir kısıtlama yoktur. Farklı projeler de dahil olmak üzere.
+Internal  : Public de olduğu gibi proje içerisinde ve namespace içerinde ulaşılabilir. Public den tek farkı farklı projelerden ulaşılamaz.
+Protected : Kendi paketinin dışından erişim sağlanamaz.
+
+
+KATMANLAR
+
+1-Entity Layer : Veritabanındaki tabloların ve sütunların tanımlanacağı katman.
+
+2-Data Access Layer : Veri erişim katmanı. Crud (Create Read Update Delete) dediğimiz işlemlerin temeli burada tanımlanacak.
+
+3-Business Layer : İş katmanı. Bu katmanda iş yüklerimizi yazıyoruz. Öncelikle şunu söylemeliyim bu katman Data Access tarafından projeye çekilmiş olan verileri alarak işleyecek olan katmandır. Biz uygulamalarımızda Data Access katmanını direk olarak kullanmayız. Araya Business katmanını koyarak bizim yerimize Business’ın yapmasını sağlarız. Kullanıcıdan gelen veriler öncelikle Business katmanına gider oradan işlenerek Data Access katmanına aktarılır. Bu katmanda ayrıca bu verilere kimlerin erişeceğini belirtiyoruz.
+
+4-Presentation Layer : UI (User Interface) katmanı. Bu katman kullanıcı ile etkileşimin yapıldığı katmandır. Burası Windows form da olabilir, Web’te olabilir veya Bir Consol uygulamasida olabilir. Burada temel amac kullaniciya verileri göstermek ve kullanıcıdan gelen verileri Business Katmanı ile Data Access’e iletmektir.
+
+Migration : projede yapılan değişiklikleri veri tabanına yansıtan, C# ile veri tabanı arasında köprüdür.
